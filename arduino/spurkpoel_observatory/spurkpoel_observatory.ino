@@ -22,15 +22,15 @@
 const int pressurePin = A7;
 const int ledPin = LED_BUILTIN;
 
-float temp = 0.0;
-float pressure = 0.0;
+float tempC = 0.0;
+float pressureMbar = 0.0;
+float depthMm = 0.0;
 
 OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
 
 void setup() {
   pinMode(pressurePin, INPUT);
-  
   pinMode(ledPin, OUTPUT);
   digitalWrite(ledPin, LOW);
 
@@ -38,25 +38,29 @@ void setup() {
   Serial.println("Spurkpoel observatory has started observing!");
 
   sensors.begin();
-  
 }
 
 void loop() {
   sensors.requestTemperatures();
-  temp = sensors.getTempCByIndex(0);
+  tempC = sensors.getTempCByIndex(0);
 
   int pressureVoltage = analogRead(pressurePin);
   /*
     0PSI = 0.5V, 10PSI = 4.5V
-    0PSI = (1023 / 10) = 102.3 = 102b
-    10PSI = 1023 - (1023 / 10) = 921.7 = 920b
-    
+    0bar = 0.5V, 0.689476bar = 4.5V
+    0mbar = (1023 / 10) = 102.3 = 102b
+    689.476mbar = 1023 - (1023 / 10) = 921.7 = 922b
+    mbar/bit = 689.476 / (922 - 102) = 0.84082439 mbar/bit
+
+    mmH20 = mbar * 10.19716
   */
-  
-  
-  
+  pressureMbar = ( pressureVoltage - 102) * 0.84082439;
 
   Serial.print("temp: ");
-  Serial.println(temp);
-  
+  Serial.print(tempC);
+  Serial.print("C pressure: ");
+  Serial.print(pressureMbar);
+  Serial.print("mbar depth: ");
+  Serial.print(depthMm);
+  Serial.println(" mm");
 }
