@@ -197,7 +197,7 @@ var options = {
     }
 
 
-$.getJSON('http://localhost:8000/webserver/spurkpoel_2.json', function(json) {
+$.getJSON('http://willemvanopstal.github.io/spurkpoel/webserver/spurkpoel_2.json', function(json) {
 	console.log(json)
         val1 = [];
 				val2 = [];
