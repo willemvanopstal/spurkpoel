@@ -107,13 +107,19 @@ h4 {
 	transition: -webkit-transform .5s ease;
 	transition: transform .5s ease;
 	transition: transform .5s ease, -webkit-transform .5s ease;
-  padding-top: 8rem;
+  padding-top: 4rem;
 }
 
 
 @media (max-width: 576px) {
   .content {
     padding-top: 0rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .content {
+    padding-top: 8rem;
   }
 }
 
@@ -218,7 +224,7 @@ p a:focus {
   .features {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 66px 66px;
+    grid-gap: 50px 50px;
   }
 }
 
