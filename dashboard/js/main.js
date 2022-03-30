@@ -93,7 +93,7 @@ var options = {
 								count: 1,
 								text: 'All'
 						}],
-						selected: 1,
+						selected: 2,
 						inputEnabled: true
 				},
 
