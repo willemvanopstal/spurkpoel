@@ -3,8 +3,22 @@ var data_pressure
 var data_temperature
 var data_updated
 
+
+function pad(num, size) {
+    var s = "0000000000000" + num;
+    return s.substr(s.length-size);
+}
+
+function requestion_data() {
+	console.log('requesting new data from TTN..')
+	$.getJSON('https://willemvanopstal.pythonanywhere.com/update', function(json) {
+					console.log('updating..')
+					parse_data_and_load_sec(json)
+	});
+};
+
 function update_data() {
-	console.log('updating data..')
+	console.log('updating data views..')
 	var wl_elem = document.getElementById("waterlevel");
 	var temp_elem = document.getElementById("temperature");
 	var pressure_elem = document.getElementById("pressure");
@@ -61,8 +75,8 @@ var options = {
 				chart: {
 						renderTo: 'graph',
 						backgroundColor: '#fff6f0',
-						marginLeft: 55,
-						marginRight: 55,
+						marginLeft: 22,
+						marginRight: 22,
 						marginTop: 25,
 						marginBottom: 45,
 						style: {
@@ -102,9 +116,9 @@ var options = {
 							 align: 'right',
 							 x: -3
 					 },
-					 title: {
-							 text: 'Waterstand'
-					 },
+					 // title: {
+						// 	 text: 'Waterstand'
+					 // },
 					 height: '54%',
 					 lineWidth: 2,
 					 resize: {
@@ -136,22 +150,22 @@ var options = {
 							 align: 'right',
 							 x: -3
 					 },
-					 title: {
-							 text: 'Druk'
-					 },
+					 // title: {
+						// 	 text: 'Druk'
+					 // },
 					 top: '59%',
 					 height: '18%',
 					 offset: 0,
 					 lineWidth: 2
 			 }, {
 					 labels: {
-							 align: 'right',
-							 x: -3
+							 align: 'left',
+							 x: 3
 					 },
 					 gridLineWidth: 0,
-					 title: {
-							 text: 'Temperatuur'
-					 },
+					 // title: {
+						// 	 text: 'Temperatuur'
+					 // },
 					 top: '59%',
 					 height: '18%',
 					 offset: 0,
@@ -162,9 +176,9 @@ var options = {
 							 align: 'right',
 							 x: -3
 					 },
-					 title: {
-							 text: 'Neerslag'
-					 },
+					 // title: {
+						// 	 text: 'Neerslag'
+					 // },
 					 top: '82%',
 					 height: '18%',
 					 offset: 0,
@@ -227,43 +241,56 @@ var options = {
     },
     }
 
+function parse_data_and_load_sec(json) {
+	console.log('parsing data and loading it..')
+	var last_data
+	val1 = [];
+	val2 = [];
+	val3 = [];
+	val4 = [];
+	$.each(json, function(key,value) {
+		val1.push([value[0], value[1]]);
+		val2.push([value[0], value[2]]);
+		val3.push([value[0], value[3]]);
+		val4.push([value[0], value[4]]);
+		lastdata = value
+	});
 
-$.getJSON('https://willemvanopstal.pythonanywhere.com/waterlevels', function(json) {
-				console.log(json)
-				var last_data
-        val1 = [];
-				val2 = [];
-				val3 = [];
-				val4 = [];
-        $.each(json, function(key,value) {
-					val1.push([value[0], value[1]]);
-					val2.push([value[0], value[2]]);
-					val3.push([value[0], value[3]]);
-					val4.push([value[0], value[4]]);
-					lastdata = value
-        });
+	options.series[0].data = val3;
+	options.series[1].data = val1;
+	options.series[2].data = val2;
+	options.series[3].data = val4;
 
-        options.series[0].data = val3;
-				options.series[1].data = val1;
-				options.series[2].data = val2;
-				options.series[3].data = val4;
+	console.log(lastdata)
 
-				console.log(lastdata)
+	var elapsed_seconds = Math.round((Date.now() - lastdata[0]) / 1000);
+	hours = Math.floor(elapsed_seconds / 3600);
+	elapsed_seconds %= 3600;
+	minutes = Math.floor(elapsed_seconds / 60);
+	seconds = elapsed_seconds % 60;
 
-				var elapsed_seconds = Math.round((Date.now() - lastdata[0]) / 1000);
-				hours = Math.floor(elapsed_seconds / 3600);
-				elapsed_seconds %= 3600;
-				minutes = Math.floor(elapsed_seconds / 60);
-				seconds = elapsed_seconds % 60;
+	console.log(Date.now(), elapsed_seconds, hours, minutes)
 
-				console.log(Date.now(), elapsed_seconds, hours, minutes)
+	data_updated = pad(hours, 2) + ':' + pad(minutes, 2)
+	data_waterlevel = lastdata[3]
+	data_pressure = lastdata[1]
+	data_temperature = lastdata[2]
 
-				data_updated = hours + ':' + minutes
-				data_waterlevel = lastdata[3]
-				data_pressure = lastdata[1]
-				data_temperature = lastdata[2]
+	update_data()
 
-				update_data()
+	chart = new Highcharts.stockChart(options);
+};
 
-        chart = new Highcharts.stockChart(options);
-     });
+function parse_data_and_load() {
+	$.getJSON('https://willemvanopstal.pythonanywhere.com/waterlevels', function(json) {
+		console.log('fetched waterlevels')
+					console.log(json)
+					parse_data_and_load_sec(json)
+
+	     });
+}
+
+$( document ).ready(function() {
+    console.log( "ready!" );
+		parse_data_and_load()
+});

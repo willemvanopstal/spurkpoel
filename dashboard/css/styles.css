@@ -132,6 +132,11 @@ h4 {
   width: 100%
 }
 
+#graph {
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
 @media (max-width: 1199.98px) {
   /*By default, containers are only full-width on xs screens.
   This makes them full-width om sm screens as well*/
