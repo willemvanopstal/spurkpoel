@@ -109,7 +109,26 @@ var options = {
 							 enabled: true
 					 },
 					 opposite: true,
-					 offset: -80
+					 offset: -80,
+					 plotLines: [{
+                value: 20,
+                color: 'grey',
+								zIndex: 20,
+                dashStyle: 'shortdash',
+                width: 1,
+                label: {
+                    text: 'Laag water'
+                }
+            }, {
+                value: 52,
+                color: 'grey',
+								zIndex: 20,
+                dashStyle: 'shortdash',
+                width: 1,
+                label: {
+                    text: 'Hoog water'
+                }
+            }]
 			 }, {
 					 labels: {
 							 align: 'right',
@@ -180,7 +199,8 @@ var options = {
 					type: 'spline',
 					name: 'Temperatuur',
 					data: null,
-					yAxis: 2
+					yAxis: 2,
+					lineWidth: 1
 		},{
 				type: 'column',
 				name: 'Neerslag',
