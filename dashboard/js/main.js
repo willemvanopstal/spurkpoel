@@ -61,8 +61,10 @@ var options = {
 				chart: {
 						renderTo: 'graph',
 						backgroundColor: '#fff6f0',
-						marginLeft: 22,
-						marginRight: 22,
+						marginLeft: 55,
+						marginRight: 55,
+						marginTop: 25,
+						marginBottom: 45,
 						style: {
 						 fontFamily: "'Ubuntu Mono', sans-serif",
 							fontSize: "15px"
@@ -109,7 +111,7 @@ var options = {
 							 enabled: true
 					 },
 					 opposite: true,
-					 offset: -80,
+					 offset: 0,
 					 plotLines: [{
                 value: 20,
                 color: 'grey',
@@ -150,10 +152,11 @@ var options = {
 					 title: {
 							 text: 'Temperatuur'
 					 },
-					 // top: '82%',
-					 height: '54%',
+					 top: '59%',
+					 height: '18%',
 					 offset: 0,
-					 lineWidth: 2
+					 lineWidth: 2,
+					 opposite: false
 			 }, {
 					 labels: {
 							 align: 'right',
@@ -173,28 +176,30 @@ var options = {
             data: null,
             type: 'areaspline',
             threshold: null,
-						color: '85aab2',
+						color: '#85aab2',
             tooltip: {
                 valueDecimals: 2
             },
-            fillColor: '#85aab2',
-						//  {
-            //     linearGradient: {
-            //         x1: 0,
-            //         y1: 0,
-            //         x2: 0,
-            //         y2: 1
-            //     },
-            //     stops: [
-						// 			[0, '#85aab2' ],
-						// 			[1, Highcharts.color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-            //     ]
-            // }
+						// fillColor: '#85aab2',
+						fillColor:
+						 {
+                linearGradient: {
+                    x1: 0,
+                    y1: 0,
+                    x2: 0,
+                    y2: 1
+                },
+                stops: [
+									[0, '#85aab2' ],
+									[1, Highcharts.color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                ]
+            }
         },{
             type: 'spline',
             name: 'Druk',
             data: null,
-            yAxis: 1
+            yAxis: 1,
+						lineWidth: 1
 			},{
 					type: 'spline',
 					name: 'Temperatuur',
@@ -215,7 +220,10 @@ var options = {
         column: {
             color: '#85aab2',
 						maxPointWidth: 10
-        }
+        },
+				areaspline: {
+					lineWidth: 2
+				}
     },
     }
 

@@ -31,6 +31,7 @@ body {
   font-family: 'Merriweather Sans', 'sans serif';
   font-weight: 300;
   background-color: #f9ece3;
+  overflow-x: hidden;
 }
 
 #graph {
@@ -125,6 +126,20 @@ h4 {
 
 .container {
   margin-bottom: 8rem;
+}
+
+.col-graph {
+  width: 100%
+}
+
+@media (max-width: 1199.98px) {
+  /*By default, containers are only full-width on xs screens.
+  This makes them full-width om sm screens as well*/
+  .container-graph {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100% !important;
+  }
 }
 
 .wave {
