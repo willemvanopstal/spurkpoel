@@ -19,7 +19,7 @@ red       #7f4134
 
 @font-face {
   font-family: 'Brandon Grotesque Bold';
-  src: url('/css/brandon-grotesque/Brandon_blk.woff2') format('woff2');
+  src: url('brandon-grotesque/Brandon_blk.woff2') format('woff2');
 }
 
 /* @font-face {
@@ -31,6 +31,10 @@ body {
   font-family: 'Merriweather Sans', 'sans serif';
   font-weight: 300;
   background-color: #f9ece3;
+}
+
+#graph {
+  min-height: 90vh;
 }
 
 .data-number {
@@ -61,6 +65,7 @@ body {
 
 .data-note {
   padding-left: 1rem;
+  padding-right: 0.5rem;
   font-size: 0.8rem;
   padding-bottom: 1rem;
   padding-top: 1rem;
@@ -103,6 +108,13 @@ h4 {
 	transition: transform .5s ease;
 	transition: transform .5s ease, -webkit-transform .5s ease;
   padding-top: 8rem;
+}
+
+
+@media (max-width: 765px) {
+  .content {
+    padding-top: 4rem;
+  }
 }
 
 .container {
@@ -169,6 +181,7 @@ p a:focus {
   width: 100%;
   border-bottom: 6px solid #859e80;
   margin-bottom: 1.4rem;
+  display: none;
 }
 
 .coloured-border-yellow {
@@ -201,7 +214,7 @@ p a:focus {
   margin-bottom: 1.4rem;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 576px) {
   .features {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -209,7 +222,7 @@ p a:focus {
   }
 }
 
-@media (max-width: 765px) {
+@media (max-width: 575px) {
   .features-item {
     margin-top: 50px;
   }
@@ -217,7 +230,7 @@ p a:focus {
 
 .features-item {
   position: relative;
-  padding-left: 60px;
+  /* padding-left: 60px; */
 }
 
 .features-item .icon {
@@ -234,6 +247,7 @@ p a:focus {
   background-color: #fff6f0;
   box-shadow: 0px 0px 10px rgb(0 0 0 / 6%);
   -webkit-transition: all 0.3s ease-in-out;
+  display: none;
 }
 
 .features-item .icon path {
@@ -249,10 +263,13 @@ p a:focus {
 .graph-item p {
   padding: 1.4em;
   padding-top: 0px;
+  display: none;
 }
 
 .graph-item h4 {
   padding-left: 1.4rem;
+  padding-top: 1rem;
+  display: none;
 }
 
 .graph-item p:last-child {
@@ -264,7 +281,14 @@ p a:focus {
   position: relative;
   padding-left: 60px;
   padding-right: 1.4rem;
-  margin-top: 80px;
+  /* margin-top: 80px; */
+}
+
+
+@media (max-width: 765px) {
+  .update-note {
+    margin-top: 0px;
+  }
 }
 
 .update-note .icon {
