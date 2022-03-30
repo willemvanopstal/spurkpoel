@@ -111,9 +111,9 @@ h4 {
 }
 
 
-@media (max-width: 765px) {
+@media (max-width: 576px) {
   .content {
-    padding-top: 4rem;
+    padding-top: 0rem;
   }
 }
 
@@ -224,7 +224,7 @@ p a:focus {
 
 @media (max-width: 575px) {
   .features-item {
-    margin-top: 50px;
+    margin-top: 1rem;
   }
 }
 
