@@ -136,7 +136,10 @@ var options = {
                 dashStyle: 'shortdash',
                 width: 1,
                 label: {
-                    text: 'Laag water'
+                    text: 'Laag water',
+                    style: {
+                        fontSize: 12
+                    }
                 }
             }, {
                 value: 52,
@@ -145,7 +148,10 @@ var options = {
                 dashStyle: 'shortdash',
                 width: 1,
                 label: {
-                    text: 'Hoog water'
+                    text: 'Hoog water',
+                    style: {
+                        fontSize: 12
+                    }
                 }
             }]
 			 }, {

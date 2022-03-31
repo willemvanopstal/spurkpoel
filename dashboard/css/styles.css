@@ -297,7 +297,6 @@ p a:focus {
   height: 2em;
   padding: 0.4em;
   margin-right: 1rem;
-
 }
 
 .update-row .icon path {
@@ -398,7 +397,7 @@ p a:focus {
 
 .icon-container .loading {
  animation: rotate 4s infinite;
-  transform-origin: 50% 50%;
+  transform-origin: 47.5% 49.7%;
   transform-box: fill-box;
 }
 @keyframes rotate{
