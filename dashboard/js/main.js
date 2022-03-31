@@ -52,15 +52,18 @@ function update_data_values() {
     temp_elem.classList.add('hide');
     pressure_elem.classList.add('hide');
     updated_elem.classList.add('hide');
-    wl_elem.innerHTML = data_waterlevel
-    wl_elem.classList.remove('hide');
-    temp_elem.innerHTML = data_temperature
-    temp_elem.classList.remove('hide');
-    pressure_elem.innerHTML = data_pressure
-    pressure_elem.classList.remove('hide');
-    updated_elem.innerHTML = data_updated
-    updated_elem.classList.remove('hide');
-    $('.icon-container .icon').removeClass('loading');
+    setTimeout(function() {
+      wl_elem.innerHTML = data_waterlevel
+      wl_elem.classList.remove('hide');
+      temp_elem.innerHTML = data_temperature
+      temp_elem.classList.remove('hide');
+      pressure_elem.innerHTML = data_pressure
+      pressure_elem.classList.remove('hide');
+      updated_elem.innerHTML = data_updated
+      updated_elem.classList.remove('hide');
+      $('.icon-container .icon').removeClass('loading');
+    }, 500)
+
     console.log('Data values updated!')
 }
 
