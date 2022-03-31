@@ -11,6 +11,7 @@ function pad(num, size) {
 
 function requestion_data() {
 	console.log('requesting new data from TTN..')
+  $('.icon-container .icon').addClass('loading');
 	$.getJSON('https://willemvanopstal.pythonanywhere.com/update', function(json) {
 					console.log('updating..')
 					parse_data_and_load_sec(json)
@@ -36,6 +37,7 @@ function update_data() {
 		pressure_elem.classList.remove('hide');
 		updated_elem.innerHTML = data_updated
 		updated_elem.classList.remove('hide');
+    $('.icon-container .icon').removeClass('loading');
 	}, 1000)
 }
 
@@ -108,7 +110,8 @@ var options = {
 								text: 'All'
 						}],
 						selected: 2,
-						inputEnabled: true
+						inputEnabled: true,
+            inputDateFormat: '%d %B',
 				},
 
 				yAxis: [{

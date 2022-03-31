@@ -35,7 +35,7 @@
 
 								<div class="features">
 									<div class="features-item">
-										<span class="icon" data-jam="tube"></span>
+										<!-- <span class="icon" data-jam="tube"></span> -->
 										<div class="data-entry">
 											<span class="data-number" id="waterlevel"></span>
 											<span class="data-unit">cm</span>
@@ -44,7 +44,7 @@
 										</div>
 									</div>
 									<div class="features-item">
-										<span class="icon" data-jam="temperature"></span>
+										<!-- <span class="icon" data-jam="temperature"></span> -->
 										<div class="data-entry">
 											<span class="data-number" id="temperature"></span>
 											<span class="data-unit">&deg;C</span>
@@ -53,7 +53,7 @@
 										</div>
 									</div>
 									<div class="features-item">
-										<span class="icon" data-jam="stamp"></span>
+										<!-- <span class="icon" data-jam="stamp"></span> -->
 										<div class="data-entry">
 											<span class="data-number" id="pressure"></span>
 											<span class="data-unit">mbar</span>
@@ -62,12 +62,18 @@
 										</div>
 									</div>
 									<div class="features-item">
-										<span class="icon" data-jam="wifi"></span>
+										<!-- <span class="icon" data-jam="wifi"></span> -->
 										<div class="data-entry">
 											<span class="data-number" id="updated"></span>
 											<span class="data-unit">h:m</span>
 											<span class="data-border"></span>
-											<span class="data-note">Uren sinds laatste update</span>
+											<div class="update-row">
+												<span class="data-note">Uren sinds laatste update</span>
+												<div class="icon-container" onClick="requestion_data()">
+													<span class="icon" data-jam="redo"></span>
+												</div>
+
+											</div>
 										</div>
 									</div>
 								</div>
@@ -99,7 +105,7 @@
 			</div>
 		</div>
 
-		<div class="container">
+		<!-- <div class="container">
 			<div class="row justify-content-center">
 				<div class="col col col-md-9 col-lg-8">
 					<div class="update-note">
@@ -110,7 +116,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 	</main>
 
