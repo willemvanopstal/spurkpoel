@@ -111,6 +111,9 @@ function load_data(json) {
     data_temperature = lastdata[2]
 
     update_data_values()
+    $('#loading').fadeOut(500, function() {
+                $('#loading').remove();
+    });
     chart = new Highcharts.stockChart(options);
 
     console.log('Loaded all new data!')

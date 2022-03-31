@@ -217,3 +217,55 @@ footer .wave svg {
       transform: rotate(1080deg);
    }
 }
+
+.loading-entry {
+  border-radius: 6px;
+  background-color: #fff6f0;
+  box-shadow: 0px 0px 10px rgb(0 0 0 / 6%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100vh - 8rem);
+}
+
+.loading-container {
+  margin-bottom: 8rem;
+}
+
+.icon-loading-container {
+  flex: 1 1 auto;
+  display: flex;           /* establish flex container */
+  flex-direction: column;  /* make main axis vertical */
+  justify-content: center; /* center items vertically, in this case */
+  align-items: center;     /* center items horizontally, in this case */
+  background-size: cover;
+  /* background-image: url('https://ecopedia.s3.eu-central-1.amazonaws.com/styles/colorbox-groot/sa/media/1/1591-master.jpg?itok=G_4_tHLR'); */
+}
+
+@media (max-width: 576px) {
+  .loading-entry {
+    height: calc(100vh - 2rem);
+  }
+}
+
+@media (min-width: 992px) {
+  .loading-entry {
+    height: calc(100vh - 16rem);
+  }
+}
+
+.icon-loading-container .icon {
+  width: 20vh;
+  height: 20vh;
+}
+
+.icon-loading-container .icon path {
+  fill: #ee8239;
+  -webkit-transition: all 0.3s ease-in-out;
+}
+
+.icon-loading-container .icon {
+ animation: rotate 4s infinite;
+  transform-origin: 46% 50%;
+  transform-box: fill-box;
+}
