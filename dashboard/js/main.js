@@ -177,7 +177,7 @@ var options = {
         inputDateFormat: '%d %B',
     },
 
-    xAxis: { type: "datetime"},
+    xAxis: { type: "datetime", ordinal: false},
 
     yAxis: [{
         labels: {
