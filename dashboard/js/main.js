@@ -177,6 +177,8 @@ var options = {
         inputDateFormat: '%d %B',
     },
 
+    xAxis: { type: "datetime"},
+
     yAxis: [{
         labels: {
             align: 'right',
