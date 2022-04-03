@@ -244,7 +244,7 @@ footer .wave svg {
 
 @media (max-width: 576px) {
   .loading-entry {
-    height: calc(100vh - 4rem);
+    height: calc(100vh - 6rem);
   }
 }
 
