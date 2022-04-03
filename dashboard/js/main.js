@@ -96,7 +96,7 @@ function load_data(json) {
     options.series[0].data = val3;
     options.series[1].data = val1;
     options.series[2].data = val2;
-    options.series[3].data = val4;
+    // options.series[3].data = val4;
 
     console.log(lastdata)
 
@@ -127,16 +127,32 @@ function load_data(json) {
 };
 
 function fetch_and_load() {
-    $.getJSON('https://willemvanopstal.pythonanywhere.com/waterlevels', function(json) {
-        console.log('Fetched data from back-end')
-        load_data(json)
+
+  $.getJSON("https://willemvanopstal.pythonanywhere.com/neerslag", function (data) {
+    console.log('Precipitation fetched from KNMI');
+    precipitation = [];
+    $.each(data, function(key, value) {
+        precipitation.push([value[0], value[1]]);
     });
+    options.series[3].data = precipitation;
+    console.log('Precipitation added to plot')
+
+     $.getJSON('https://willemvanopstal.pythonanywhere.com/waterlevels', function(json) {
+         console.log('Fetched data from back-end')
+         load_data(json)
+     });
+  });
+
+
 }
 
 
 // Highcharts options
 var options = {
 
+    credits: {
+      enabled: false
+    },
     chart: {
         renderTo: 'graph',
         backgroundColor: '#fff6f0',
