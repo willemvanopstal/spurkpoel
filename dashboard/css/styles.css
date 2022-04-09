@@ -42,7 +42,16 @@ body {
   transition: opacity 0.5s;
 }
 
-.hide {
+.warning-container {
+  transition: opacity 0.5s;
+  opacity: 0;
+}
+
+.visible {
+  opacity: 1 !important;
+}
+
+.hidden {
     opacity: 0 !important;
 }
 
@@ -171,7 +180,7 @@ footer .wave svg {
   position: relative;
 }
 
-.icon-container {
+.clickable-icon-container {
   cursor: pointer;
 }
 
@@ -179,6 +188,14 @@ footer .wave svg {
   width: 2em;
   height: 2em;
   padding: 0.4em;
+  /* margin-right: 1rem; */
+}
+
+.update-row .icon-container svg:first-child {
+  margin-right: -0.7rem;
+}
+
+.update-row .icon-container svg:last-child {
   margin-right: 1rem;
 }
 
@@ -192,8 +209,7 @@ footer .wave svg {
     box-shadow: 0px 0px 15px rgb(0 0 0 / 5%)
 }
 
-
-.icon-container:hover .icon {
+.clickable-icon-container:hover .icon {
   border-radius: 6px;
   background-color: #f9ece3;
   box-shadow: 0px 0px 10px rgb(0 0 0 / 6%);

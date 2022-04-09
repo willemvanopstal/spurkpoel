@@ -3,6 +3,8 @@ var data_pressure
 var data_temperature
 var data_updated
 
+var high_water_limit = 0.0
+
 function pad(num, size) {
     var s = "0000000000000" + num;
     return s.substr(s.length - size);
@@ -48,20 +50,31 @@ function update_data_values() {
     var temp_elem = document.getElementById("temperature");
     var pressure_elem = document.getElementById("pressure");
     var updated_elem = document.getElementById("updated");
-    wl_elem.classList.add('hide');
-    temp_elem.classList.add('hide');
-    pressure_elem.classList.add('hide');
-    updated_elem.classList.add('hide');
+    wl_elem.classList.add('hidden');
+    temp_elem.classList.add('hidden');
+    pressure_elem.classList.add('hidden');
+    updated_elem.classList.add('hidden');
     setTimeout(function() {
       wl_elem.innerHTML = data_waterlevel
-      wl_elem.classList.remove('hide');
+      wl_elem.classList.remove('hidden');
       temp_elem.innerHTML = data_temperature
-      temp_elem.classList.remove('hide');
+      temp_elem.classList.remove('hidden');
       pressure_elem.innerHTML = data_pressure
-      pressure_elem.classList.remove('hide');
+      pressure_elem.classList.remove('hidden');
       updated_elem.innerHTML = data_updated
-      updated_elem.classList.remove('hide');
+      updated_elem.classList.remove('hidden');
       $('.icon-container .icon').removeClass('loading');
+
+      if (data_waterlevel >= high_water_limit) {
+        console.log('high water limit reached!')
+        var warning_waterlevel_elem = document.getElementById("warning-waterlevel");
+        warning_waterlevel_elem.classList.add('visible');
+      }
+      else {
+        // var warning_waterlevel_elem = document.getElementById("warning-waterlevel");
+        // warning_waterlevel_elem.classList.remove('hidden');
+      }
+
     }, 500)
 
     console.log('Data values updated!')
@@ -69,7 +82,7 @@ function update_data_values() {
 
 function synchronize() {
     console.log('Syncing with TTN data..')
-    $('.icon-container .icon').addClass('loading');
+    $('.update').addClass('loading');
     $.getJSON('https://willemvanopstal.pythonanywhere.com/update', function(json) {
         console.log('Synced back-end with TTN')
         console.log('Fetched newly synced data from back-end')
@@ -81,6 +94,11 @@ function synchronize() {
 
 function load_data(json) {
     console.log('Parsing data..')
+
+    var warning_waterlevel_elem = document.getElementById("warning-waterlevel");
+    warning_waterlevel_elem.classList.remove('visible');
+    // warning_waterlevel_elem.classList.add('hidden');
+
     var last_data
     val1 = [];
     val2 = [];
@@ -223,7 +241,7 @@ var options = {
                 }
             }
         }, {
-            value: 52,
+            value: high_water_limit,
             color: 'grey',
             zIndex: 20,
             dashStyle: 'shortdash',
@@ -331,7 +349,7 @@ var options = {
 }
 
 $(document).ready(function() {
-    $('.icon-container .icon').addClass('loading');
+    $('.update').addClass('loading');
     console.log("Loading data for the first time..");
     fetch_and_load()
 });

@@ -48,7 +48,14 @@
 											<span class="data-number" id="waterlevel"></span>
 											<span class="data-unit">cm</span>
 											<span class="data-border"></span>
-											<span class="data-note">Waterstand t.o.v. streefpeil</span>
+											<!-- <span class="data-note">Waterstand t.o.v. streefpeil</span> -->
+											<div class="update-row">
+												<span class="data-note">Waterstand t.o.v. streefpeil</span>
+												<div class="icon-container warning-container" id="warning-waterlevel">
+													<span class="icon" data-jam="alert"></span>
+													<span class="icon" data-jam="upload"></span>
+												</div>
+											</div>
 										</div>
 									</div>
 									<div class="features-item">
@@ -74,10 +81,9 @@
 											<span class="data-border"></span>
 											<div class="update-row">
 												<span class="data-note">Uren sinds laatste update</span>
-												<div class="icon-container" onClick="synchronize()">
-													<span class="icon" data-jam="redo"></span>
+												<div class="icon-container clickable-icon-container" onClick="synchronize()">
+													<span class="icon update" data-jam="redo"></span>
 												</div>
-
 											</div>
 										</div>
 									</div>
