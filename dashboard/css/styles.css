@@ -285,3 +285,31 @@ footer .wave svg {
   transform-origin: 46% 50%;
   transform-box: fill-box;
 }
+
+.blink {
+    -webkit-animation: blink 4s infinite both;
+            animation: blink 4s infinite both;
+}
+
+@-webkit-keyframes blink {
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+@keyframes blink {
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
