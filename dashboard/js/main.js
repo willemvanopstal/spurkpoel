@@ -11,6 +11,10 @@ function pad(num, size) {
     return s.substr(s.length - size);
 }
 
+function roundedToFixed(input, digits){
+  var rounded = Math.pow(10, digits);
+  return (Math.round(input * rounded) / rounded).toFixed(digits);
+}
 
 // Wave function
 $(function() {
@@ -56,9 +60,9 @@ function update_data_values() {
     pressure_elem.classList.add('hidden');
     updated_elem.classList.add('hidden');
     setTimeout(function() {
-      wl_elem.innerHTML = data_waterlevel
+      wl_elem.innerHTML = roundedToFixed(data_waterlevel, 1)
       wl_elem.classList.remove('hidden');
-      temp_elem.innerHTML = data_temperature
+      temp_elem.innerHTML = roundedToFixed(data_temperature, 1)
       temp_elem.classList.remove('hidden');
       pressure_elem.innerHTML = data_pressure
       pressure_elem.classList.remove('hidden');
