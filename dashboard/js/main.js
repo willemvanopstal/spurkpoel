@@ -3,7 +3,8 @@ var data_pressure
 var data_temperature
 var data_updated
 
-var high_water_limit = 0.0
+var high_water_limit = 1.0
+var low_water_limit = 0.8
 
 function pad(num, size) {
     var s = "0000000000000" + num;
@@ -65,9 +66,16 @@ function update_data_values() {
       updated_elem.classList.remove('hidden');
       $('.icon-container .icon').removeClass('loading');
 
-      if (data_waterlevel >= high_water_limit) {
+      if (data_waterlevel > high_water_limit) {
         console.log('high water limit reached!')
         var warning_waterlevel_elem = document.getElementById("warning-waterlevel");
+        $('#warning-waterlevel .icon:last-child').removeClass('upside-down');
+        warning_waterlevel_elem.classList.add('visible');
+      }
+      else if (data_waterlevel <= low_water_limit) {
+        console.log('low water limit reached!')
+        var warning_waterlevel_elem = document.getElementById("warning-waterlevel");
+        $('#warning-waterlevel .icon:last-child').addClass('upside-down');
         warning_waterlevel_elem.classList.add('visible');
       }
       else {
@@ -229,7 +237,7 @@ var options = {
         opposite: true,
         offset: 0,
         plotLines: [{
-            value: 20,
+            value: low_water_limit,
             color: 'grey',
             zIndex: 20,
             dashStyle: 'shortdash',

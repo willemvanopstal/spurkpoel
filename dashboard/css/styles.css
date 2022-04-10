@@ -313,3 +313,7 @@ footer .wave svg {
     opacity: 0;
   }
 }
+
+.upside-down {
+  transform: rotate(180deg);
+}
